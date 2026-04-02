@@ -1,0 +1,82 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+struct node{
+    int data;
+    struct node * next;
+};
+
+void show_deletion(struct node * ptr){
+    while( ptr != NULL){
+        printf("Element: %d\n",ptr->data);
+        ptr =ptr ->next;
+    }
+}
+// deletion llt from begining;
+struct node * prrint_node(struct node * head ){
+    struct node * ptr= head;
+    head = head -> next;
+    free(ptr);
+    return head;
+}
+
+// deletion of llt from between;
+struct node * print_node(struct node * head, int index ){
+    struct node * p= head;
+    int i=0;
+    while(i != index-1){
+        p = p -> next;
+        i++;
+    }
+    struct node * q = p -> next;
+    p->next=q->next;
+    free (q);
+    
+    return head;
+}
+
+//deletion of llt from end;
+struct node * printt_node(struct node * head){
+    struct node * p= head;
+    struct node * q = head ->next;
+    while( q -> next != NULL){
+        p = p -> next;
+        q = q ->next;
+    }
+
+    p ->next = NULL;
+    free(q);
+    return head;
+}
+
+int main(){
+    struct node * head;
+    struct node * second;
+    struct node * third;
+    struct node * forth;
+    struct node * fifth;
+    head=(struct node *)malloc(sizeof(struct node));
+    second=(struct node *)malloc(sizeof(struct node));
+    third=(struct node *)malloc(sizeof(struct node));
+    forth=(struct node *)malloc(sizeof(struct node));
+    fifth= (struct node *)malloc(sizeof(struct node));
+    head ->data=5;
+    head ->next =second;
+
+    second ->data=10;
+    second ->next=third;
+
+    third->data=15;
+    third->next=forth;
+
+    forth ->data=20;
+    forth ->next=fifth;
+    
+    fifth ->data=25;
+    fifth ->next =NULL;
+    show_deletion(head);
+    head = printt_node(head );
+    printf( " \nafter deletion\n");
+    show_deletion(head);
+    return 0;
+}
