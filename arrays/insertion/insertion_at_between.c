@@ -3,7 +3,7 @@ void insertele(int arr[],int n,int idx,int element){
     for(int i=n;i>=idx;i--){
         arr[i]=arr[i-1];
     }
-    arr[idx]==element;
+    arr[idx]=element;
     n++;
 
 }
